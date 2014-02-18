@@ -2,7 +2,7 @@
 
 use Illuminate\Encryption\DecryptException;
 
-class Encrypter {
+class Encrypter extends \Illuminate\Encryption\Encrypter {
 
 	/**
 	 * The encryption key.
@@ -61,7 +61,7 @@ class Encrypter {
 		// authenticity. Then, we'll JSON encode the data in a "payload" array.
 		$iv = base64_encode($iv);
 
-		$mac = $this->hash($value);
+		$mac = $this->hash($iv, $value);
 
 		return base64_encode(json_encode(compact('iv', 'value', 'mac')));
 	}
@@ -138,7 +138,7 @@ class Encrypter {
 			throw new DecryptException("Invalid data passed to encrypter.");
 		}
 
-		if ($payload['mac'] != $this->hash($payload['value']))
+		if ($payload['mac'] != $this->hash($payload['iv'], $payload['value']))
 		{
 			throw new DecryptException("MAC for payload is invalid.");
 		}
@@ -152,7 +152,7 @@ class Encrypter {
 	 * @param  string  $value
 	 * @return string  
 	 */
-	protected function hash($value)
+	protected function hash($iv, $value)
 	{
 		return hash_hmac('sha256', $value, $this->key);
 	}
@@ -203,7 +203,7 @@ class Encrypter {
 	 * @param  array  $data
 	 * @return bool
 	 */
-	protected function invalidPayload(array $data)
+	protected function invalidPayload($data)
 	{
 		return ! isset($data['iv']) or ! isset($data['value']) or ! isset($data['mac']);
 	}
