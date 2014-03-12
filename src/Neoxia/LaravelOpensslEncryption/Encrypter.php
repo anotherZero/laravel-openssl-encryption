@@ -85,6 +85,9 @@ class Encrypter extends \Illuminate\Encryption\Encrypter {
 	 */
 	protected function doEncrypt($value, $iv)
 	{
+        if (!defined('OPENSSL_RAW_DATA')) {
+            define('OPENSSL_RAW_DATA', 0);
+        }
 		return openssl_encrypt($value, $this->cipher."-".$this->mode, $this->key, OPENSSL_RAW_DATA, $iv);
 	}
 
@@ -117,6 +120,9 @@ class Encrypter extends \Illuminate\Encryption\Encrypter {
 	 */
 	protected function doDecrypt($value, $iv)
 	{
+        if (!defined('OPENSSL_RAW_DATA')) {
+            define('OPENSSL_RAW_DATA', 0);
+        }
 		return openssl_decrypt($value, $this->cipher."-".$this->mode, $this->key, OPENSSL_RAW_DATA, $iv);
 	}
 
