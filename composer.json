@@ -1,5 +1,5 @@
 {
-    "name": "neoxia/laravel-openssl-encryption",
+    "name": "anotherzero/laravel-openssl-encryption-4x",
     "description": "Laravel 4 encryption package that uses the PHP openssl extension",
     "keywords": ["laravel", "openssl"],
     "authors": [
