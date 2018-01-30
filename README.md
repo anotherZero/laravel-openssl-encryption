@@ -9,11 +9,11 @@ It has been created to run Laravel 4 apps on the [Google App Engine for PHP](htt
 
 Installation
 ------------
-Add the neoxia/laravel-openssl-encryption package to your composer.json file.
+Add the anotherzero/laravel-openssl-encryption package to your composer.json file.
 
     "require": {
     	"laravel/framework": "4.0.*",
-    	"neoxia/laravel-openssl-encryption": "1.0.*"
+    	"anotherzero/laravel-openssl-encryption-4x": "1.0.*"
     },
 
 Install the package.
