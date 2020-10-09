@@ -36,10 +36,10 @@ So, to complete the installation, we have to bypass this check. Add the followin
 ```json
 "scripts": {
 	"post-install-cmd": [
-		"sed -i '' 's/MCRYPT_RIJNDAEL_128/null/' vendor/laravel/framework/src/Illuminate/Encryption/Encrypter.php",
-		"sed -i '' 's/MCRYPT_MODE_CBC/null/' vendor/laravel/framework/src/Illuminate/Encryption/Encrypter.php",
-		"sed -i '' 's/echo/\\/\\/echo/' vendor/laravel/framework/src/Illuminate/Foundation/start.php",
-		"sed -i '' 's/exit/\\/\\/exit/' vendor/laravel/framework/src/Illuminate/Foundation/start.php",
+		"sed -i.bak 's/MCRYPT_RIJNDAEL_128/null/' vendor/laravel/framework/src/Illuminate/Encryption/Encrypter.php",
+		"sed -i.bak 's/MCRYPT_MODE_CBC/null/' vendor/laravel/framework/src/Illuminate/Encryption/Encrypter.php",
+		"sed -i.bak 's/echo/\\/\\/echo/' vendor/laravel/framework/src/Illuminate/Foundation/start.php",
+		"sed -i.bak 's/exit/\\/\\/exit/' vendor/laravel/framework/src/Illuminate/Foundation/start.php",
 		"php artisan optimize"
 	],
 	...
